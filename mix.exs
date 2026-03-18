@@ -25,10 +25,10 @@ defmodule AvenUI.MixProject do
 
   defp deps do
     [
-      {:phoenix, "~> 1.7"},
-      {:phoenix_live_view, "~> 0.20"},
-      {:phoenix_html, "~> 4.0"},
-      {:ex_doc, "~> 0.31", only: :dev, runtime: false}
+      {:phoenix, "~> 1.8"},
+      {:phoenix_live_view, "~> 1.1"},
+      {:phoenix_html, "~> 4.3"},
+      {:ex_doc, "~> 0.40.1", only: :dev, runtime: false}
     ]
   end
 
