@@ -1,0 +1,29 @@
+# Elixir/Mix
+/_build/
+/cover/
+/deps/
+/doc/
+/.fetch
+erl_crash.dump
+*.ez
+*.beam
+/config/*.secret.exs
+.elixir_ls/
+
+# Storybook app
+/storybook/_build/
+/storybook/deps/
+/storybook/assets/node_modules/
+/storybook/priv/static/assets/
+/storybook/.elixir_ls/
+
+# Node / assets
+node_modules/
+npm-debug.log
+.npm/
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
