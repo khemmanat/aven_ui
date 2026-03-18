@@ -25,7 +25,6 @@ defmodule AvenUI.Components.Alert do
   use Phoenix.Component
   import AvenUI.Helpers
 
-  @base_classes "relative flex gap-3 rounded-elx border p-4 text-sm"
 
   @variant_classes %{
     "info"    => "bg-blue-50  border-blue-200  text-blue-800  [&_.alert-icon]:text-blue-500  dark:bg-blue-950/40  dark:border-blue-800  dark:text-blue-300",
@@ -54,7 +53,7 @@ defmodule AvenUI.Components.Alert do
     ~H"""
     <div
       role="alert"
-      class={classes([String.trim(@base_classes), variant_class(@variant), @class])}
+      class={classes(["relative flex gap-3 rounded-elx border p-4 text-sm", variant_class(@variant), @class])}
     >
       <%# Icon: prefer slot, fall back to default SVG %>
       <div class="alert-icon mt-0.5 shrink-0">

@@ -37,16 +37,6 @@ defmodule AvenUI.Components.Input do
   use Phoenix.Component
   import AvenUI.Helpers
 
-  @base_input_classes """
-  flex w-full rounded-elx border border-avn-border bg-avn-background
-  px-3 py-2 text-sm text-avn-foreground
-  placeholder:text-avn-muted-foreground
-  focus:outline-none focus:ring-2 focus:ring-avn-purple focus:border-transparent
-  disabled:cursor-not-allowed disabled:opacity-50
-  transition-colors duration-150
-  """
-
-  @error_classes "border-red-400 focus:ring-red-500 dark:border-red-600"
 
   attr :id,          :any,     default: nil
   attr :name,        :any,     default: nil
@@ -103,11 +93,11 @@ defmodule AvenUI.Components.Input do
             placeholder={@placeholder}
             disabled={@disabled}
             class={classes([
-              String.trim(@base_input_classes),
+              "flex w-full rounded-elx border border-avn-border bg-avn-background px-3 py-2 text-sm text-avn-foreground placeholder:text-avn-muted-foreground focus:outline-none focus:ring-2 focus:ring-avn-purple focus:border-transparent disabled:cursor-not-allowed disabled:opacity-50 transition-colors duration-150",
               "min-h-[80px] resize-y",
               if(@prefix != [], do: "pl-8"),
               if(@suffix != [], do: "pr-8"),
-              if(@errors != [], do: @error_classes),
+              if(@errors != [], do: "border-red-400 focus:ring-red-500 dark:border-red-600"),
               @class
             ])}
             aria-describedby={hint_id(@id || @name, @hint)}
@@ -124,11 +114,11 @@ defmodule AvenUI.Components.Input do
             disabled={@disabled}
             required={@required}
             class={classes([
-              String.trim(@base_input_classes),
+              "flex w-full rounded-elx border border-avn-border bg-avn-background px-3 py-2 text-sm text-avn-foreground placeholder:text-avn-muted-foreground focus:outline-none focus:ring-2 focus:ring-avn-purple focus:border-transparent disabled:cursor-not-allowed disabled:opacity-50 transition-colors duration-150",
               "h-9",
               if(@prefix != [], do: "pl-8"),
               if(@suffix != [], do: "pr-8"),
-              if(@errors != [], do: @error_classes),
+              if(@errors != [], do: "border-red-400 focus:ring-red-500 dark:border-red-600"),
               @class
             ])}
             aria-describedby={hint_id(@id || @name, @hint)}
@@ -209,9 +199,9 @@ defmodule AvenUI.Components.Input do
           id={@id || @name}
           name={@name}
           class={classes([
-            String.trim(@base_input_classes),
+            "flex w-full rounded-elx border border-avn-border bg-avn-background px-3 py-2 text-sm text-avn-foreground placeholder:text-avn-muted-foreground focus:outline-none focus:ring-2 focus:ring-avn-purple focus:border-transparent disabled:cursor-not-allowed disabled:opacity-50 transition-colors duration-150",
             "h-9 pr-8 appearance-none cursor-pointer",
-            if(@errors != [], do: @error_classes),
+            if(@errors != [], do: "border-red-400 focus:ring-red-500 dark:border-red-600"),
             @class
           ])}
           {@rest}

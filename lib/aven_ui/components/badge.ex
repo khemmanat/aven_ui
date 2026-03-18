@@ -29,11 +29,6 @@ defmodule AvenUI.Components.Badge do
   use Phoenix.Component
   import AvenUI.Helpers
 
-  @base_classes """
-  inline-flex items-center gap-1.5 whitespace-nowrap
-  rounded-full border px-2.5 font-medium
-  transition-colors
-  """
 
   @variant_classes %{
     "default" => "bg-avn-muted text-avn-foreground border-avn-border",
@@ -61,7 +56,7 @@ defmodule AvenUI.Components.Badge do
     ~H"""
     <span
       class={classes([
-        String.trim(@base_classes),
+        "inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border px-2.5 font-medium transition-colors",
         variant_class(@variant),
         size_class(@size),
         @class

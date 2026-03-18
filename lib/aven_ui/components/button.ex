@@ -38,15 +38,6 @@ defmodule AvenUI.Components.Button do
   use Phoenix.Component
   import AvenUI.Helpers
 
-  @base_classes """
-  inline-flex items-center justify-center gap-2 whitespace-nowrap
-  rounded-elx font-medium select-none border
-  transition-all duration-150 ease-in-out
-  focus-visible:outline-none focus-visible:ring-2
-  focus-visible:ring-avn-purple focus-visible:ring-offset-2
-  disabled:pointer-events-none disabled:opacity-50
-  active:scale-[0.97]
-  """
 
   @variant_classes %{
     "primary"   => "bg-avn-purple text-white border-avn-purple-dark hover:bg-avn-purple-dark",
@@ -80,7 +71,7 @@ defmodule AvenUI.Components.Button do
       type={@type}
       disabled={@disabled || @loading}
       class={classes([
-        String.trim(@base_classes),
+        "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-elx font-medium select-none border transition-all duration-150 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-avn-purple focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 active:scale-[0.97]",
         variant_class(@variant),
         size_class(@size),
         @class
