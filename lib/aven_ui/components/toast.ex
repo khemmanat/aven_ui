@@ -29,7 +29,7 @@ defmodule AvenUI.Components.Toast do
       #   id="global-toasts"
       #   topic="user:123"
       # />
-      # Note: Replace "123" with your actual user ID, e.g., "user:\#{current_user.id}"
+      # Note: Replace "123" with your actual user ID dynamically
 
   Send from anywhere:
 
