@@ -37,8 +37,6 @@ defmodule AvenUI.Components.Input do
   use Phoenix.Component
   import AvenUI.Helpers
 
-  alias Phoenix.HTML.Form
-
   @base_input_classes """
   flex w-full rounded-elx border border-avn-border bg-avn-background
   px-3 py-2 text-sm text-avn-foreground

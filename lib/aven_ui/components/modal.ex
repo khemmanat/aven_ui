@@ -44,6 +44,7 @@ defmodule AvenUI.Components.Modal do
   """
 
   use Phoenix.Component
+  alias Phoenix.LiveView.JS
   import AvenUI.Helpers
 
   @size_classes %{
@@ -154,4 +155,6 @@ defmodule AvenUI.Components.Modal do
         transition: "ease-in duration-150"
     )
   end
+
+  defp size_class(size), do: @size_classes[size]
 end

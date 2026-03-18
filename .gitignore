@@ -9,6 +9,7 @@ erl_crash.dump
 *.beam
 /config/*.secret.exs
 .elixir_ls/
+mix.lock
 
 # Storybook app
 /storybook/_build/
@@ -21,6 +22,23 @@ erl_crash.dump
 node_modules/
 npm-debug.log
 .npm/
+
+# AI
+.instructions.md
+.prompt.md
+.agent.md
+copilot-instructions.md
+.env
+.env.local
+.vscode-copilot/
+.aider*
+.continue/
+.codeium/
+.tabnine/
+.copilot/
+.claude*
+*.prompt
+.ai/
 
 # OS
 .DS_Store

@@ -47,6 +47,7 @@ defmodule AvenUI.Components.Tabs do
   """
 
   use Phoenix.Component
+  alias Phoenix.LiveView.JS
   import AvenUI.Helpers
 
   attr :active,    :string,  required: true, doc: "ID of the currently active tab"

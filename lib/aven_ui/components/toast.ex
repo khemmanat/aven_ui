@@ -27,7 +27,7 @@ defmodule AvenUI.Components.Toast do
       <%# In your app layout %>
       <.live_component module={AvenUI.Components.ToastLive}
         id="global-toasts"
-        topic={"user:#{@current_user.id}"}
+        topic={"user:\#{@current_user.id}"}
       />
 
   Send from anywhere:
@@ -43,6 +43,7 @@ defmodule AvenUI.Components.Toast do
   """
 
   use Phoenix.Component
+  alias Phoenix.LiveView.JS
   import AvenUI.Helpers
 
   @variant_classes %{
@@ -178,7 +179,7 @@ defmodule AvenUI.Components.Toast do
         id="flash-error"
         variant="error"
         title="Error"
-        :duration={6000}
+        duration={6000}
       >
         <%= msg %>
       </.toast>

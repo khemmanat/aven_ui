@@ -54,7 +54,6 @@ defmodule AvenUI.Components.Dropdown do
   """
 
   use Phoenix.Component
-  alias Phoenix.LiveView.JS
   import AvenUI.Helpers
 
   attr :id,    :string,  required: true

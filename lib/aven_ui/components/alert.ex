@@ -47,7 +47,7 @@ defmodule AvenUI.Components.Alert do
   attr :class,       :string,  default: nil
   attr :rest,        :global,  include: ~w(phx-click phx-target)
   slot :icon
-  slot :title, doc: "Optional named slot for the title (alternative to `title` attr)"
+  slot :title_slot, doc: "Optional named slot for the title (alternative to `title` attr)"
   slot :inner_block
 
   def alert(assigns) do
@@ -70,8 +70,8 @@ defmodule AvenUI.Components.Alert do
 
       <div class="flex-1 min-w-0">
         <%# Title: prefer named slot, then attr %>
-        <%= if @title != [] do %>
-          <p class="font-medium leading-snug mb-0.5"><%= render_slot(@title) %></p>
+        <%= if @title_slot != [] do %>
+          <p class="font-medium leading-snug mb-0.5"><%= render_slot(@title_slot) %></p>
         <% else %>
           <%= if @title do %>
             <p class="font-medium leading-snug mb-0.5"><%= @title %></p>

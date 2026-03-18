@@ -253,7 +253,7 @@ defmodule AvenUI.Components.Table do
   defp align_class("right"),  do: "text-right"
   defp align_class(_),        do: "text-left"
 
-  defp page_range(current, total) when total <= 7 do
+  defp page_range(_current, total) when total <= 7 do
     Enum.to_list(1..total)
   end
 
