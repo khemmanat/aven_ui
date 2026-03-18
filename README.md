@@ -26,7 +26,7 @@ A free, open-source UI component library for **Phoenix LiveView** — the missin
 # mix.exs
 def deps do
   [
-    {:aven_ui, "~> 0.1", github: "yourname/aven_ui"}
+    {:aven_ui, "~> 0.1", github: "khemmanat/aven_ui"}
   ]
 end
 ```
@@ -74,23 +74,23 @@ end
 
 ```js
 // assets/js/app.js
-import { AvenUIHooks } from "./hooks/aven_ui"
+import { AvenUIHooks } from "./hooks/aven_ui";
 
 let liveSocket = new LiveSocket("/live", Socket, {
-  hooks: { ...AvenUIHooks, ...YourHooks }
-})
+  hooks: { ...AvenUIHooks, ...YourHooks },
+});
 ```
 
 ### 6. Add Tailwind preset
 
 ```js
 // assets/tailwind.config.js
-const avenUIPreset = require("../../deps/aven_ui/assets/tailwind.config.js")
+const avenUIPreset = require("../../deps/aven_ui/assets/tailwind.config.js");
 
 module.exports = {
   presets: [avenUIPreset],
   content: ["./lib/**/*.{ex,heex}", "./assets/js/**/*.js"],
-}
+};
 ```
 
 ### 7. Add flash toasts to root layout
@@ -371,16 +371,16 @@ socket |> put_flash(:error,   "Connection failed.")
 
 ## JS Hooks
 
-| Hook | Purpose |
-|------|---------|
-| `Dropdown` | Keyboard nav, outside-click close |
-| `Modal` | Focus trap, scroll lock, Escape |
-| `Tooltip` | Position-aware tooltip |
-| `Flash` | Auto-dismiss with pause-on-hover |
-| `AutoResize` | Growing textarea |
-| `CopyToClipboard` | Clipboard API with feedback |
-| `InfiniteScroll` | Load-more on sentinel visible |
-| `ScrollTop` | Smooth scroll on LiveView patch |
+| Hook              | Purpose                           |
+| ----------------- | --------------------------------- |
+| `Dropdown`        | Keyboard nav, outside-click close |
+| `Modal`           | Focus trap, scroll lock, Escape   |
+| `Tooltip`         | Position-aware tooltip            |
+| `Flash`           | Auto-dismiss with pause-on-hover  |
+| `AutoResize`      | Growing textarea                  |
+| `CopyToClipboard` | Clipboard API with feedback       |
+| `InfiniteScroll`  | Load-more on sentinel visible     |
+| `ScrollTop`       | Smooth scroll on LiveView patch   |
 
 ```heex
 <%!-- Tooltip usage --%>
