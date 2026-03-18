@@ -24,11 +24,11 @@ defmodule AvenUI.Components.Toast do
   Use `ToastLive` embedded in your layout — subscribes to a PubSub topic
   and renders toasts as they arrive.
 
-      <%# In your app layout %>
-      <.live_component module={AvenUI.Components.ToastLive}
-        id="global-toasts"
-        topic={"user:\#{@current_user.id}"}
-      />
+      # In your app layout:
+      # <.live_component module={AvenUI.Components.ToastLive}
+      #   id="global-toasts"
+      #   topic={"user:\#{@current_user.id}"}
+      # />
 
   Send from anywhere:
 
