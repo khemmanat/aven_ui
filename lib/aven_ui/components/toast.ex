@@ -27,8 +27,9 @@ defmodule AvenUI.Components.Toast do
       # In your app layout:
       # <.live_component module={AvenUI.Components.ToastLive}
       #   id="global-toasts"
-      #   topic={"user:" <> to_string(@current_user.id)}
+      #   topic="user:123"
       # />
+      # Note: Replace "123" with your actual user ID, e.g., "user:\#{current_user.id}"
 
   Send from anywhere:
 
