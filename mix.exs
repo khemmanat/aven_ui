@@ -1,7 +1,7 @@
 defmodule AvenUI.MixProject do
   use Mix.Project
 
-  @version "0.1.0"
+  @version "0.1.1"
   @source_url "https://github.com/khemmanat/aven_ui"
 
   def project do
@@ -14,7 +14,8 @@ defmodule AvenUI.MixProject do
       package: package(),
       docs: docs(),
       name: "AvenUI",
-      description: "A free, open-source UI component library for Phoenix LiveView — no paywalls.",
+      description: "21 accessible Phoenix LiveView components. Tailwind-based, dark mode,
+             shadcn-style installer. Free forever, MIT licensed.",
       source_url: @source_url
     ]
   end
@@ -37,7 +38,7 @@ defmodule AvenUI.MixProject do
       maintainers: ["Your Name"],
       licenses: ["MIT"],
       links: %{"GitHub" => @source_url},
-      files: ~w(lib assets priv mix.exs README.md LICENSE CHANGELOG.md)
+      files: ~w(lib assets mix.exs README.md LICENSE CHANGELOG.md)
     ]
   end
 

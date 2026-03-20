@@ -45,3 +45,5 @@ copilot-instructions.md
 .DS_Store?
 ._*
 Thumbs.db
+
+*.tar

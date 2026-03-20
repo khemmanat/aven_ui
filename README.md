@@ -1,6 +1,8 @@
-# AvenUI
+# AvenUI — 21 Phoenix LiveView Components
 
-A free, open-source UI component library for **Phoenix LiveView** — the missing shadcn/ui for the Elixir ecosystem.
+> Even if AvenUI stopped being maintained tomorrow, your app keeps
+> working — because mix aven_ui.add copies the code into your project.
+> You own it. No runtime dependency. No paywalls. Ever.
 
 > **Free alternative to Petal.** MIT licensed. You own your components.
 
@@ -15,6 +17,16 @@ A free, open-source UI component library for **Phoenix LiveView** — the missin
 - **Form-native** — Input and Select integrate with `Phoenix.HTML.FormField` + Ecto changesets
 - **Accessible** — ARIA roles, keyboard navigation, focus management built in
 - **Tailwind v3 + v4** compatible
+
+## Accessibility
+
+Every component includes:
+
+- `role` and `aria-*` attributes (alert, modal, table, tabs, dropdown)
+- Keyboard navigation (Dropdown: Arrow keys, Escape, Tab)
+- Focus management (Modal: focus trap on open, restore on close)
+- `aria-expanded`, `aria-controls`, `aria-labelledby` where relevant
+- Screen reader announcements via `role="status"` on Toast
 
 ---
 
