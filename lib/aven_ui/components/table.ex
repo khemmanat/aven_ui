@@ -66,6 +66,9 @@ defmodule AvenUI.Components.Table do
   slot :action, doc: "Action cell rendered at the far right of each row"
   slot :empty,  doc: "Content shown when rows is empty"
 
+  @doc """
+  Renders a data table with sortable columns and optional actions.
+  """
   def table(assigns) do
     ~H"""
     <div class={classes(["w-full overflow-x-auto", @class])}>

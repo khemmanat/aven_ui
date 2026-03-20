@@ -43,6 +43,9 @@ defmodule AvenUI.Components.Avatar do
   attr :color,    :string,  default: "purple", values: ~w(purple blue green amber red gray)
   attr :class,    :string,  default: nil
 
+  @doc """
+  Renders an avatar with initials or image.
+  """
   def avatar(assigns) do
     ~H"""
     <div class={classes([

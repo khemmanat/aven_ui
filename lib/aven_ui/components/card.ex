@@ -47,6 +47,9 @@ defmodule AvenUI.Components.Card do
     "interactive" => "bg-avn-card border border-avn-border rounded-avn-lg cursor-pointer hover:border-avn-purple/40 hover:shadow-sm transition-all duration-150"
   }
 
+  @doc """
+  Renders a card container with optional header, body, and footer sections.
+  """
   def card(assigns) do
     ~H"""
     <div

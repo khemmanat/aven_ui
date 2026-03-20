@@ -65,6 +65,9 @@ defmodule AvenUI.Components.Button do
   attr :rest,     :global,  include: ~w(phx-click phx-submit phx-value phx-target form)
   slot :inner_block, required: true
 
+  @doc """
+  Renders a button with variants, sizes, and loading state support.
+  """
   def button(assigns) do
     ~H"""
     <button

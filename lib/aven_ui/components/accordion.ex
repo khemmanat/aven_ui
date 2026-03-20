@@ -31,6 +31,9 @@ defmodule AvenUI.Components.Accordion do
     attr :open,  :boolean
   end
 
+  @doc """
+  Renders an accordion component with collapsible items.
+  """
   def accordion(assigns) do
     ~H"""
     <div

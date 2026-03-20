@@ -66,6 +66,9 @@ defmodule AvenUI.Components.Modal do
   slot :inner_block, required: true, doc: "Modal body content"
   slot :footer,      doc: "Action buttons — rendered in the footer bar"
 
+  @doc """
+  Renders a modal dialog with title, body, and optional footer.
+  """
   def modal(assigns) do
     ~H"""
     <%# Backdrop + scroll lock via phx-mounted / JS hook %>

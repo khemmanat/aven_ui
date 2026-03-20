@@ -15,6 +15,9 @@ defmodule AvenUI.Components.Kbd do
   attr :class, :string, default: nil
   slot :inner_block, required: true
 
+  @doc """
+  Renders a keyboard key or shortcut display.
+  """
   def kbd(assigns) do
     ~H"""
     <kbd class={classes([

@@ -32,6 +32,9 @@ defmodule AvenUI.Components.Toggle do
   attr :field,   Phoenix.HTML.FormField, doc: "Binds from a Phoenix form field"
   attr :rest,    :global,  include: ~w(phx-change phx-blur disabled)
 
+  @doc """
+  Renders a toggle switch for boolean input.
+  """
   def toggle(%{field: %Phoenix.HTML.FormField{} = field} = assigns) do
     assigns
     |> assign(field: nil, id: assigns.id || field.id)

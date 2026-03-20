@@ -23,6 +23,9 @@ defmodule AvenUI.Components.CodeBlock do
   attr :class,    :string,  default: nil
   slot :inner_block, required: true
 
+  @doc """
+  Renders a code block with optional language label and copy button.
+  """
   def code_block(assigns) do
     id = assigns.id || "code-#{System.unique_integer([:positive])}"
     assigns = assign(assigns, :id, id)

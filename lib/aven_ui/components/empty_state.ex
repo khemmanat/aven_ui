@@ -21,6 +21,9 @@ defmodule AvenUI.Components.EmptyState do
   attr :class,       :string, default: nil
   slot :inner_block
 
+  @doc """
+  Renders an empty state with icon, title, description, and optional action.
+  """
   def empty_state(assigns) do
     ~H"""
     <div class={classes(["flex flex-col items-center justify-center gap-4 py-16 px-4 text-center", @class])}>

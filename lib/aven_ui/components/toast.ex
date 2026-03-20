@@ -71,6 +71,9 @@ defmodule AvenUI.Components.Toast do
 
   slot :inner_block
 
+  @doc """
+  Renders a toast notification with title and optional dismiss button.
+  """
   def toast(assigns) do
     ~H"""
     <div

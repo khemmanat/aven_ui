@@ -56,6 +56,9 @@ defmodule AvenUI.Components.Input do
   slot :suffix, doc: "Content rendered inside the input on the right (clear button, unit label)"
   slot :inner_block
 
+  @doc """
+  Renders a form input with label, error handling, and optional prefix/suffix.
+  """
   def input(%{field: %Phoenix.HTML.FormField{} = field} = assigns) do
     assigns
     |> assign(field: nil, id: assigns.id || field.id)

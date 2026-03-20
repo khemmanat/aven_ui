@@ -36,6 +36,9 @@ defmodule AvenUI.Components.Progress do
   attr :animated,   :boolean, default: true
   attr :class,      :string,  default: nil
 
+  @doc """
+  Renders a progress bar with optional label and value display.
+  """
   def progress(assigns) do
     ~H"""
     <div class={classes(["w-full", @class])}>

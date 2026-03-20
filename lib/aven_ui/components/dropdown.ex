@@ -62,6 +62,9 @@ defmodule AvenUI.Components.Dropdown do
   slot :trigger, required: true
   slot :inner_block, required: true
 
+  @doc """
+  Renders a dropdown menu with trigger and menu items.
+  """
   def dropdown(assigns) do
     ~H"""
     <div

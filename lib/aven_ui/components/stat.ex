@@ -23,6 +23,9 @@ defmodule AvenUI.Components.Stat do
   attr :loading, :boolean, default: false
   attr :class,   :string,  default: nil
 
+  @doc """
+  Renders a stat/metric card for displaying KPIs.
+  """
   def stat(assigns) do
     ~H"""
     <div class={classes(["rounded-avn-lg bg-avn-muted border border-avn-border p-4", @class])}>

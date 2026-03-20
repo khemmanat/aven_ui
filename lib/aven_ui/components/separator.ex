@@ -16,6 +16,9 @@ defmodule AvenUI.Components.Separator do
   attr :label,       :string, default: nil
   attr :class,       :string, default: nil
 
+  @doc """
+  Renders a horizontal or vertical separator with optional label.
+  """
   def separator(assigns) do
     ~H"""
     <%= if @label do %>

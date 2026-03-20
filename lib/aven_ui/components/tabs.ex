@@ -68,6 +68,9 @@ defmodule AvenUI.Components.Tabs do
     attr :id, :string, required: true
   end
 
+  @doc """
+  Renders a tabs component with optional content panels.
+  """
   def tabs(assigns) do
     ~H"""
     <div class={classes(["w-full", @class])}>

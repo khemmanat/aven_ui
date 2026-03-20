@@ -52,6 +52,9 @@ defmodule AvenUI.Components.Badge do
   attr :rest,    :global
   slot :inner_block, required: true
 
+  @doc """
+  Renders a badge for labels, status indicators, or counts.
+  """
   def badge(assigns) do
     ~H"""
     <span

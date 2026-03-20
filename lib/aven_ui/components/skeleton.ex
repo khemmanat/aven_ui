@@ -23,6 +23,9 @@ defmodule AvenUI.Components.Skeleton do
 
   attr :class, :string, default: nil
 
+  @doc """
+  Renders a skeleton loader placeholder with shimmer animation.
+  """
   def skeleton(assigns) do
     ~H"""
     <div

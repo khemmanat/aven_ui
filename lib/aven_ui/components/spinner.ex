@@ -15,6 +15,9 @@ defmodule AvenUI.Components.Spinner do
   attr :size,  :string, default: "md", values: ~w(xs sm md lg xl)
   attr :class, :string, default: nil
 
+  @doc """
+  Renders an animated loading spinner.
+  """
   def spinner(assigns) do
     ~H"""
     <svg

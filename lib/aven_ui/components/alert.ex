@@ -49,6 +49,9 @@ defmodule AvenUI.Components.Alert do
   slot :title_slot, doc: "Optional named slot for the title (alternative to `title` attr)"
   slot :inner_block
 
+  @doc """
+  Renders an alert banner with optional icon, title, and dismissible behavior.
+  """
   def alert(assigns) do
     ~H"""
     <div
