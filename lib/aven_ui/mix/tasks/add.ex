@@ -186,18 +186,18 @@ defmodule Mix.Tasks.AvenUi.Add do
     1. lib/#{app}_web.ex — html_helpers/0:
          #{imports}
 
-    2. assets/css/app.css:
-         @import "./avenui.css";
+    2. assets/css/app.css — replace existing imports with:
+         @import "tailwindcss";
+         @import "../../deps/aven_ui/assets/css/avenui.css";
+         @source "../../deps/aven_ui/lib/**/*.ex";
+
+       No tailwind.config.js needed — Tailwind v4 is CSS-first.
 
     3. assets/js/app.js:
          import { AvenUIHooks } from "./hooks/aven_ui"
          let liveSocket = new LiveSocket("/live", Socket, {
            hooks: { ...AvenUIHooks, ...Hooks }
          })
-
-    4. assets/tailwind.config.js:
-         const avenUIPreset = require("../../deps/aven_ui/assets/tailwind.config.js")
-         module.exports = { presets: [avenUIPreset], content: ["./lib/**/*.{ex,heex}"] }
     """)
   end
 end

@@ -1,215 +1,192 @@
 /*
  * AvenUI Design Tokens
- * =====================
- * Import this file in your app.css AFTER tailwind base/components:
+ * ====================
+ * Requires Tailwind v4 and Phoenix 1.8+.
  *
+ * Setup in assets/css/app.css:
+ *
+ *   @import "tailwindcss";
  *   @import "../../deps/aven_ui/assets/css/avenui.css";
  *
- * Or with Tailwind v4 (css-first):
- *   @import "aven_ui/assets/css/avenui.css";
+ * That's it. No tailwind.config.js needed.
  */
 
-/* ─────────────────────────────────────────────
-   1. CSS Custom Properties (Design Tokens)
-   ───────────────────────────────────────────── */
+/* ─── Design tokens ─────────────────────────────────────────
+   Registered as Tailwind utility classes via @theme.
+   Use anywhere: bg-avn-purple, text-avn-foreground,
+   rounded-avn-lg, shadow-avn, border-avn-border, etc.
+   ─────────────────────────────────────────────────────────── */
 
-:root {
-  /* Brand */
-  --avn-purple-50:  #f5f3ff;
-  --avn-purple-100: #ede9fe;
-  --avn-purple-200: #ddd6fe;
-  --avn-purple-400: #a78bfa;
-  --avn-purple-500: #8b5cf6;
-  --avn-purple-600: #7c3aed;   /* Primary */
-  --avn-purple-700: #6d28d9;
-  --avn-purple-800: #5b21b6;
-  --avn-purple-900: #4c1d95;
+@theme {
+  /* Brand purple */
+  --color-avn-purple: #7c3aed;
+  --color-avn-purple-dark: #6d28d9;
+  --color-avn-purple-light: #ede9fe;
+  --color-avn-purple-50: #f5f3ff;
+  --color-avn-purple-100: #ede9fe;
+  --color-avn-purple-200: #ddd6fe;
+  --color-avn-purple-400: #a78bfa;
+  --color-avn-purple-500: #8b5cf6;
+  --color-avn-purple-600: #7c3aed;
+  --color-avn-purple-700: #6d28d9;
+  --color-avn-purple-800: #5b21b6;
+  --color-avn-purple-900: #4c1d95;
 
-  /* Backgrounds */
-  --avn-background:   #ffffff;
-  --avn-card:         #ffffff;
-  --avn-muted:        #f8f8f7;
-  --avn-muted-hover:  #f1f0ef;
+  /* Surfaces */
+  --color-avn-background: #ffffff;
+  --color-avn-card: #ffffff;
+  --color-avn-muted: #f8f8f7;
+  --color-avn-muted-hover: #f1f0ef;
 
-  /* Foregrounds */
-  --avn-foreground:         #0f0f0e;
-  --avn-muted-foreground:   #737370;
-  --avn-placeholder:        #a3a39f;
+  /* Text */
+  --color-avn-foreground: #0f0f0e;
+  --color-avn-muted-foreground: #737370;
+  --color-avn-placeholder: #a3a39f;
 
-  /* Borders */
-  --avn-border:       rgba(0, 0, 0, 0.10);
-  --avn-border-focus: var(--avn-purple-600);
+  /* Border */
+  --color-avn-border: rgba(0, 0, 0, 0.1);
 
   /* Radius */
-  --avn-radius:     6px;
-  --avn-radius-lg:  10px;
-  --avn-radius-xl:  14px;
-  --avn-radius-full: 9999px;
+  --radius-avn: 6px;
+  --radius-avn-lg: 10px;
+  --radius-avn-xl: 14px;
+  --radius-avn-full: 9999px;
 
-  /* Shadows (performance-safe: composited on GPU) */
-  --avn-shadow-sm:  0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --avn-shadow:     0 1px 3px 0 rgb(0 0 0 / 0.08), 0 1px 2px -1px rgb(0 0 0 / 0.05);
-  --avn-shadow-md:  0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+  /* Shadows */
+  --shadow-avn-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-avn: 0 1px 3px 0 rgb(0 0 0 / 0.08), 0 1px 2px -1px rgb(0 0 0 / 0.05);
+  --shadow-avn-md:
+    0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+}
+
+/* ─── Raw CSS variables ──────────────────────────────────────
+   For direct var(--avn-*) usage in component styles.
+   These mirror the @theme tokens above.
+   ─────────────────────────────────────────────────────────── */
+
+:root {
+  --avn-purple-600: #7c3aed;
+  --avn-purple-700: #6d28d9;
+  --avn-background: #ffffff;
+  --avn-card: #ffffff;
+  --avn-muted: #f8f8f7;
+  --avn-foreground: #0f0f0e;
+  --avn-muted-foreground: #737370;
+  --avn-border: rgba(0, 0, 0, 0.1);
+  --avn-radius: 6px;
+  --avn-radius-lg: 10px;
+  --avn-radius-xl: 14px;
 
   /* Z-index scale */
-  --avn-z-dropdown:  1000;
-  --avn-z-sticky:    1100;
-  --avn-z-overlay:   1200;
-  --avn-z-modal:     1300;
-  --avn-z-toast:     1400;
-  --avn-z-tooltip:   1500;
+  --avn-z-dropdown: 1000;
+  --avn-z-sticky: 1100;
+  --avn-z-overlay: 1200;
+  --avn-z-modal: 1300;
+  --avn-z-toast: 1400;
+  --avn-z-tooltip: 1500;
 }
 
-/* ─────────────────────────────────────────────
-   2. Dark Mode Tokens
-   ───────────────────────────────────────────── */
+/* ─── Dark mode ──────────────────────────────────────────────
+   Toggle by adding .dark or data-theme="dark" to <html>.
+   Overrides both @theme tokens and :root variables.
+   ─────────────────────────────────────────────────────────── */
 
-.dark, [data-theme="dark"] {
-  --avn-background:         #0e0e0d;
-  --avn-card:               #161615;
-  --avn-muted:              #1d1d1c;
-  --avn-muted-hover:        #252523;
-  --avn-foreground:         #f5f5f4;
-  --avn-muted-foreground:   #8a8a85;
-  --avn-placeholder:        #5a5a56;
-  --avn-border:             rgba(255, 255, 255, 0.09);
+@layer base {
+  .dark,
+  [data-theme="dark"] {
+    --color-avn-background: #0e0e0d;
+    --color-avn-card: #161615;
+    --color-avn-muted: #1d1d1c;
+    --color-avn-muted-hover: #252523;
+    --color-avn-foreground: #f5f5f4;
+    --color-avn-muted-foreground: #8a8a85;
+    --color-avn-placeholder: #5a5a56;
+    --color-avn-border: rgba(255, 255, 255, 0.09);
+
+    --avn-background: #0e0e0d;
+    --avn-card: #161615;
+    --avn-muted: #1d1d1c;
+    --avn-foreground: #f5f5f4;
+    --avn-muted-foreground: #8a8a85;
+    --avn-border: rgba(255, 255, 255, 0.09);
+  }
 }
 
-/* ─────────────────────────────────────────────
-   3. Tailwind CSS v3 — theme() extension via
-      tailwind.config.js (reference only here)
-   ───────────────────────────────────────────── */
+/* ─── Base resets ────────────────────────────────────────────── */
 
-/*
-  Add to your tailwind.config.js:
+@layer base {
+  *,
+  *::before,
+  *::after {
+    /* Smooth dark mode transitions — layout props excluded */
+    transition-property:
+      color, background-color, border-color, outline-color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 100ms;
+  }
 
-  theme: {
-    extend: {
-      colors: {
-        "avn-purple":           "var(--avn-purple-600)",
-        "avn-purple-dark":      "var(--avn-purple-700)",
-        "avn-background":       "var(--avn-background)",
-        "avn-card":             "var(--avn-card)",
-        "avn-foreground":       "var(--avn-foreground)",
-        "avn-muted":            "var(--avn-muted)",
-        "avn-muted-foreground": "var(--avn-muted-foreground)",
-        "avn-border":           "var(--avn-border)",
-      },
-      borderRadius: {
-        "elx":    "var(--avn-radius)",
-        "avn-lg": "var(--avn-radius-lg)",
-        "avn-xl": "var(--avn-radius-xl)",
-      },
-      ringColor: {
-        "avn-purple": "var(--avn-purple-600)",
-      }
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
     }
   }
-*/
 
-/* ─────────────────────────────────────────────
-   4. Tailwind v4 CSS-first theme (optional)
-      Use this block if you're on Tailwind v4
-   ───────────────────────────────────────────── */
-
-/*
-@theme {
-  --color-avn-purple:           var(--avn-purple-600);
-  --color-avn-purple-dark:      var(--avn-purple-700);
-  --color-avn-background:       var(--avn-background);
-  --color-avn-card:             var(--avn-card);
-  --color-avn-foreground:       var(--avn-foreground);
-  --color-avn-muted:            var(--avn-muted);
-  --color-avn-muted-foreground: var(--avn-muted-foreground);
-  --color-avn-border:           var(--avn-border);
-  --radius-elx:                 var(--avn-radius);
-  --radius-avn-lg:              var(--avn-radius-lg);
-}
-*/
-
-/* ─────────────────────────────────────────────
-   5. Base resets (performance-safe)
-   ───────────────────────────────────────────── */
-
-/* Smooth color transitions for dark mode toggle */
-*,
-*::before,
-*::after {
-  /* Only transition color props, never layout — avoids layout thrashing */
-  transition-property: color, background-color, border-color, outline-color, fill, stroke;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 100ms;
-}
-
-/* Remove transitions on motion-sensitive users */
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
+  :focus {
+    outline: none;
+  }
+  :focus-visible {
+    outline: 2px solid var(--avn-purple-600);
+    outline-offset: 2px;
   }
 }
 
-/* Focus styles — visible only for keyboard navigation */
-:focus { outline: none; }
-:focus-visible {
-  outline: 2px solid var(--avn-purple-600);
-  outline-offset: 2px;
+/* ─── Utility classes ────────────────────────────────────────── */
+
+@layer components {
+  .avn-card {
+    background: var(--avn-card);
+    border: 1px solid var(--avn-border);
+    border-radius: var(--avn-radius-lg);
+  }
+
+  .avn-input {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    background: var(--avn-background);
+    border: 1px solid var(--avn-border);
+    border-radius: var(--avn-radius);
+    color: var(--avn-foreground);
+    font-size: 0.875rem;
+    line-height: 1.5;
+    transition:
+      border-color 150ms,
+      box-shadow 150ms;
+  }
+
+  .avn-input:focus {
+    border-color: var(--avn-purple-600);
+    box-shadow: 0 0 0 3px
+      color-mix(in srgb, var(--avn-purple-600) 20%, transparent);
+    outline: none;
+  }
 }
 
-/* ─────────────────────────────────────────────
-   6. Utility classes (non-Tailwind fallback)
-      Used by components when Tailwind is absent
-   ───────────────────────────────────────────── */
+/* ─── LiveView performance helpers ──────────────────────────── */
 
-.avn-card {
-  background: var(--avn-card);
-  border: 1px solid var(--avn-border);
-  border-radius: var(--avn-radius-lg);
-}
-
-.avn-input {
-  width: 100%;
-  padding: 0.5rem 0.75rem;
-  background: var(--avn-background);
-  border: 1px solid var(--avn-border);
-  border-radius: var(--avn-radius);
-  color: var(--avn-foreground);
-  font-size: 0.875rem;
-  line-height: 1.5;
-  transition: border-color 150ms, box-shadow 150ms;
-}
-
-.avn-input:focus {
-  border-color: var(--avn-purple-600);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--avn-purple-600) 20%, transparent);
-  outline: none;
-}
-
-/* ─────────────────────────────────────────────
-   7. LiveView-specific performance helpers
-   ───────────────────────────────────────────── */
-
-/*
-  Prevent layout shifts during LiveView patch cycles.
-  Applied on phx-update="append" and "stream" containers.
-*/
 [phx-update="stream"] > * {
-  /* Promote to GPU layer to avoid repaint storms on stream inserts */
   will-change: auto;
   contain: layout style;
 }
 
-/*
-  Prevent FOUC during phx-loading states.
-  Phoenix adds phx-loading class to the <html> element on navigation.
-*/
 .phx-loading [data-avn-page-content] {
   opacity: 0.6;
   pointer-events: none;
   transition: opacity 200ms;
 }
 
-/* Toast / flash positioning (used with Flash component) */
 .avn-flash-container {
   position: fixed;
   bottom: 1.5rem;
