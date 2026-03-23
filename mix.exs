@@ -1,7 +1,7 @@
 defmodule AvenUI.MixProject do
   use Mix.Project
 
-  @version "0.2.0"
+  @version "0.2.1"
   @source_url "https://github.com/khemmanat/aven_ui"
 
   def project do
@@ -35,7 +35,7 @@ defmodule AvenUI.MixProject do
 
   defp package do
     [
-      maintainers: ["Your Name"],
+      maintainers: ["Khemmanat"],
       licenses: ["MIT"],
       links: %{"GitHub" => @source_url},
       files: ~w(lib assets mix.exs README.md LICENSE CHANGELOG.md)

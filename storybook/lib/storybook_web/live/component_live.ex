@@ -153,7 +153,7 @@ defmodule StorybookWeb.ComponentLive do
 
         <div class="px-4 py-3 border-t border-avn-border">
           <a
-            href="https://github.com/yourname/aven_ui"
+            href="https://github.com/khemmanat/aven_ui"
             target="_blank"
             class="flex items-center gap-2 text-xs text-avn-muted-foreground hover:text-avn-foreground transition-colors"
           >

@@ -15,7 +15,7 @@ defmodule Mix.Tasks.AvenUi.Add do
   use Mix.Task
 
   @components ~w(
-    accordion alert avatar badge button card code_block
+    accordion alert avatar badge button card code_block combobox
     dropdown empty_state input kbd modal progress
     separator skeleton spinner stat table tabs toast toggle
   )
@@ -23,6 +23,7 @@ defmodule Mix.Tasks.AvenUi.Add do
   @component_files %{
     "accordion" => "lib/aven_ui/components/accordion.ex",
     "alert" => "lib/aven_ui/components/alert.ex",
+    "combobox" => "lib/aven_ui/components/combobox.ex",
     "avatar" => "lib/aven_ui/components/avatar.ex",
     "badge" => "lib/aven_ui/components/badge.ex",
     "button" => "lib/aven_ui/components/button.ex",
