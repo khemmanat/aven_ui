@@ -64,7 +64,6 @@ defmodule AvenUI.Components.Combobox do
 
   use Phoenix.Component
   import AvenUI.Helpers
-  alias Phoenix.LiveView.JS
 
   @doc "Searchable combobox — drop-in replacement for a select field."
   attr(:id, :string, required: true)
@@ -97,7 +96,7 @@ defmodule AvenUI.Components.Combobox do
       <div
         id={@id}
         phx-hook="AvenUICombobox"
-        data-selected={Jason.encode!(@selected || %{})}
+        data-value={selected_value(@selected)}
         class="relative"
       >
         <%# Hidden input — submits the selected value with the form %>
