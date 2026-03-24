@@ -490,6 +490,7 @@ export const AvenUIHooks = {
   InfiniteScroll,
   ScrollTop,
   AvenUICombobox,
+  AvenUIDatePicker,
 };
 
 export {
@@ -502,4 +503,5 @@ export {
   InfiniteScroll,
   ScrollTop,
   AvenUICombobox,
+  AvenUIDatePicker,
 };

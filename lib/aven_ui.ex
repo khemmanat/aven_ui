@@ -5,7 +5,7 @@ defmodule AvenUI do
   ## Quick setup
 
       # mix.exs
-      {:aven_ui, "~> 0.1", github: "khemmanat/aven_ui"}
+      {:aven_ui, "~> 0.1", github: "yourname/aven_ui"}
 
       # Terminal
       mix aven_ui.add --all
@@ -25,6 +25,7 @@ defmodule AvenUI do
       import AvenUI.Components.Accordion
       import AvenUI.Components.Alert
       import AvenUI.Components.Combobox
+      import AvenUI.Components.DatePicker
       import AvenUI.Components.Avatar
       import AvenUI.Components.Badge
       import AvenUI.Components.Button

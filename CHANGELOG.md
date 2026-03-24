@@ -5,6 +5,54 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [0.2.2] — 2026-03-23
+
+### Added
+
+- **DatePicker component** (`date_picker/1`) — calendar-based date input
+  - Single date mode and date range mode (`mode="range"`)
+  - Server-rendered calendar grid — no JS date library required
+  - Month navigation via LiveView events
+  - `min_date` / `max_date` constraints
+  - Works with `Phoenix.HTML.FormField`
+  - Built-in label, hint, error display, today shortcut, clear button
+- **`AvenUIDatePicker` JS hook** — open/close and clear button wiring
+- **`mix aven_ui.new` project generator**
+  - Runs `mix phx.new` then wires AvenUI automatically
+  - Installs all 23 components via `mix aven_ui.add --all`
+  - Configures `app.css` for Tailwind v4
+  - Wires `AvenUIHooks` into `app.js`
+  - Injects component imports into `web.ex`
+  - Starter layout: navbar + sidebar + dashboard home page
+  - Dark mode toggle wired out of the box
+
+### Changed
+
+- Component count: 22 → 23
+- `mix aven_ui.add --all` now includes `date_picker`
+
+### Usage
+
+```bash
+# Project generator
+mix aven_ui.new my_app
+mix aven_ui.new my_saas --no-ecto
+cd my_app && mix phx.server
+```
+
+```heex
+# Single date picker
+<.date_picker id="dob" name="dob" label="Date of birth"
+  selected={@date} view_month={@dp_month} on_change="date_picked" />
+
+# Date range picker
+<.date_picker id="stay" name="stay" label="Stay dates" mode="range"
+  range_start={@check_in} range_end={@check_out}
+  view_month={@dp_month} on_change="date_picked" />
+```
+
+---
+
 ## [0.2.1] — 2026-03-23
 
 ### Added
