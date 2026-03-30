@@ -3,6 +3,77 @@
 All notable changes to AvenUI are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.2.3] — 2026-03-24
+
+### Added
+
+- **`data_table/1` component** — rich data table with filter bar + server-side sort
+  - Filter bar with `dt_search/1` and `dt_select/1` sub-components
+  - Active filter chips with individual remove buttons
+  - Server-side sort — fires `phx-click` event, developer handles the query
+  - Integrated pagination with row count ("Showing 1–20 of 243")
+  - Empty state adapts: "No data yet" vs "No results match your filters"
+  - `:toolbar` slot for action buttons (New, Export, etc.)
+  - Row hover-reveal actions
+- **`AvenUI.DataTable` struct** — state helper for filter/sort/pagination
+  - `DataTable.new/1` — create initial state
+  - `DataTable.set_filter/2` — update filter params, strips blank values
+  - `DataTable.toggle_sort/2` — flip sort direction or change field
+  - `DataTable.set_page/2` / `reset_page/1` — pagination control
+  - `DataTable.put_total/2` — set total count from database
+  - `DataTable.total_pages/1`, `offset/1`, `filtered?/1`, `filter_value/2`
+
+### Changed
+
+- Component count: 23 → 24 (data_table)
+- `mix aven_ui.add --all` now includes `data_table`
+- `use AvenUI, :components` now imports `AvenUI.Components.DataTable`
+
+### Usage
+
+```heex
+<.data_table id="users" rows={@rows} table={@table}
+  title="Users" on_filter="dt_filter" on_sort="dt_sort" on_paginate="dt_paginate">
+  <:filter>
+    <.dt_search name="search" placeholder="Search users…" />
+    <.dt_select name="status" prompt="All statuses"
+      options={[{"Active", "active"}, {"Inactive", "inactive"}]} />
+  </:filter>
+  <:toolbar>
+    <.button size="sm" phx-click="new_user">New user</.button>
+  </:toolbar>
+  <:col :let={u} label="Name" field="name" sortable><%= u.name %></:col>
+  <:col :let={u} label="Email" field="email" sortable><%= u.email %></:col>
+  <:action :let={u}>
+    <.button size="xs" variant="ghost" phx-click="edit" phx-value-id={u.id}>Edit</.button>
+  </:action>
+</.data_table>
+```
+
+```elixir
+# LiveView
+alias AvenUI.DataTable
+
+def mount(_, _, socket) do
+  {:ok, socket |> assign(:table, DataTable.new(per_page: 20)) |> load_rows()}
+end
+
+def handle_event("dt_filter", params, socket) do
+  table = socket.assigns.table |> DataTable.set_filter(params) |> DataTable.reset_page()
+  {:noreply, socket |> assign(:table, table) |> load_rows()}
+end
+
+def handle_event("dt_sort", %{"field" => field}, socket) do
+  table = DataTable.toggle_sort(socket.assigns.table, field)
+  {:noreply, socket |> assign(:table, table) |> load_rows()}
+end
+
+def handle_event("dt_paginate", %{"page" => page}, socket) do
+  table = DataTable.set_page(socket.assigns.table, String.to_integer(page))
+  {:noreply, socket |> assign(:table, table) |> load_rows()}
+end
+```
+
 ---
 
 ## [0.2.2] — 2026-03-23

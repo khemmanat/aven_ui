@@ -24,7 +24,9 @@ defmodule AvenUI do
     quote do
       import AvenUI.Components.Accordion
       import AvenUI.Components.Alert
+      import AvenUI.Components.CommandPalette
       import AvenUI.Components.Combobox
+      import AvenUI.Components.DataTable
       import AvenUI.Components.DatePicker
       import AvenUI.Components.Avatar
       import AvenUI.Components.Badge

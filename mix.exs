@@ -1,7 +1,7 @@
 defmodule AvenUI.MixProject do
   use Mix.Project
 
-  @version "0.2.2"
+  @version "0.2.3"
   @source_url "https://github.com/khemmanat/aven_ui"
 
   def project do
@@ -15,7 +15,7 @@ defmodule AvenUI.MixProject do
       docs: docs(),
       name: "AvenUI",
       description:
-        "21 accessible Phoenix LiveView components. Requires Tailwind v4 + Phoenix 1.8. Dark mode, shadcn-style installer. Free forever, MIT licensed.",
+        "24 accessible Phoenix LiveView components. Requires Tailwind v4 + Phoenix 1.8. Dark mode, shadcn-style installer. Free forever, MIT licensed.",
       source_url: @source_url
     ]
   end
