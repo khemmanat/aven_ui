@@ -1,46 +1,79 @@
-# AvenUI — 21 Phoenix LiveView Components
+# AvenUI — 24 Phoenix LiveView Components
 
 > Even if AvenUI stopped being maintained tomorrow, your app keeps
-> working — because mix aven_ui.add copies the code into your project.
-> You own it. No runtime dependency. No paywalls. Ever.
+> working — because `mix aven_ui.add` copies the code into your project.
+> You own it. No paywalls. Ever.
 
-> **Free alternative to Petal.** MIT licensed. You own your components.
+> Free alternative to Petal. MIT licensed. Tailwind v4 native.
 
 ---
 
 ## Why AvenUI?
 
-- **Zero JS by default** — every component works with pure LiveView server rendering
-- **shadcn-style installer** — `mix aven_ui.add button badge` copies code into your project so you own it
-- **Full dark mode** — CSS variable tokens, no Tailwind class flicker
-- **LiveView streams** — Table and lists support `phx-update="stream"` out of the box
-- **Form-native** — Input and Select integrate with `Phoenix.HTML.FormField` + Ecto changesets
-- **Accessible** — ARIA roles, keyboard navigation, focus management built in
-- **Tailwind v3 + v4** compatible
+- 24 accessible Phoenix LiveView components
+- shadcn-style installer — `mix aven_ui.add button badge` copies source into your app
+- `mix aven_ui.new` scaffolds a fresh Phoenix 1.8 app with AvenUI pre-wired
+- Tailwind v4 / Phoenix 1.8 native — CSS-first setup, no `tailwind.config.js` required
+- Full dark mode via design tokens, without class flicker
+- Form-native inputs for `Phoenix.HTML.FormField` and Ecto changesets
+- Rich data UI: `combobox`, `date_picker`, and `data_table`
+- Minimal JS hooks only where interaction is actually needed
+
+## New in 0.2.x
+
+- `combobox` — searchable select with keyboard navigation
+- `date_picker` — single-date and range picker with server-rendered calendar
+- `data_table` — filter bar, server-side sort, pagination, and active filter chips
+- `mix aven_ui.new` — Phoenix 1.8 project generator with AvenUI pre-installed
+- Tailwind v4 migration — CSS-first setup with native `@theme` tokens
 
 ## Accessibility
 
-Every component includes:
+Every component ships with accessibility baked in:
 
-- `role` and `aria-*` attributes (alert, modal, table, tabs, dropdown)
-- Keyboard navigation (Dropdown: Arrow keys, Escape, Tab)
-- Focus management (Modal: focus trap on open, restore on close)
-- `aria-expanded`, `aria-controls`, `aria-labelledby` where relevant
-- Screen reader announcements via `role="status"` on Toast
+- `role` and `aria-*` attributes where relevant
+- Keyboard navigation for dropdowns, comboboxes, tabs, and date pickers
+- Focus management for modal dialogs
+- Screen-reader friendly flash toasts via `role="status"`
+- Semantic table, form, and navigation markup
 
 ---
 
 ## Installation
 
-### 1. Add dep
+### Option A — Start a new app with AvenUI
+
+```bash
+mix aven_ui.new my_app
+cd my_app
+mix phx.server
+```
+
+This generates a Phoenix 1.8 app with:
+
+- AvenUI installed
+- all 24 components added
+- Tailwind v4 CSS wired
+- `AvenUIHooks` connected in `app.js`
+- starter dashboard layout with dark mode toggle
+
+### Option B — Add AvenUI to an existing Phoenix app
+
+### 1. Add the dependency
 
 ```elixir
 # mix.exs
 def deps do
   [
-    {:aven_ui, "~> 0.1", github: "khemmanat/aven_ui"}
+    {:aven_ui, "~> 0.2.3", hex: :aven_ui}
   ]
 end
+```
+
+If you prefer GitHub:
+
+```elixir
+{:aven_ui, "~> 0.2.3", github: "khemmanat/aven_ui"}
 ```
 
 ### 2. Install components
@@ -58,54 +91,69 @@ mix aven_ui.add --all
 mix aven_ui.add --all --dry-run
 ```
 
-Components are copied into `lib/my_app_web/components/ui/` with the namespace
-rewritten to `MyAppWeb.UI.*`. You own the code.
+This copies component modules into `lib/my_app_web/components/ui/`, plus:
 
-### 3. Import in web.ex
+- `assets/css/avenui.css`
+- `assets/js/hooks/aven_ui.js`
+
+### 3. Import your copied components in `web.ex`
 
 ```elixir
 # lib/my_app_web.ex
 defp html_helpers do
   quote do
-    use AvenUI, :components
-    # or cherry-pick:
-    # import MyAppWeb.UI.Button
-    # import MyAppWeb.UI.Badge
+    import MyAppWeb.UI.Accordion
+    import MyAppWeb.UI.Alert
+    import MyAppWeb.UI.Avatar
+    import MyAppWeb.UI.Badge
+    import MyAppWeb.UI.Button
+    import MyAppWeb.UI.Card
+    import MyAppWeb.UI.CodeBlock
+    import MyAppWeb.UI.Combobox
+    import MyAppWeb.UI.DataTable
+    import MyAppWeb.UI.DatePicker
+    import MyAppWeb.UI.Dropdown
+    import MyAppWeb.UI.EmptyState
+    import MyAppWeb.UI.Input
+    import MyAppWeb.UI.Kbd
+    import MyAppWeb.UI.Modal
+    import MyAppWeb.UI.Progress
+    import MyAppWeb.UI.Separator
+    import MyAppWeb.UI.Skeleton
+    import MyAppWeb.UI.Spinner
+    import MyAppWeb.UI.Stat
+    import MyAppWeb.UI.Table
+    import MyAppWeb.UI.Tabs
+    import MyAppWeb.UI.Toast
+    import MyAppWeb.UI.Toggle
   end
 end
 ```
 
-### 4. Add CSS
+If you want to use AvenUI directly from the dependency instead of your copied modules, `use AvenUI, :components` is also available.
+
+### 4. Add the CSS
 
 ```css
 /* assets/css/app.css */
+@import "tailwindcss";
 @import "./avenui.css";
 ```
 
-### 5. Add JS hooks
+No `tailwind.config.js` is needed with Tailwind v4.
+
+### 5. Add the JS hooks
 
 ```js
 // assets/js/app.js
 import { AvenUIHooks } from "./hooks/aven_ui";
 
 let liveSocket = new LiveSocket("/live", Socket, {
-  hooks: { ...AvenUIHooks, ...YourHooks },
+  hooks: { ...AvenUIHooks, ...Hooks },
 });
 ```
 
-### 6. Add Tailwind preset
-
-```js
-// assets/tailwind.config.js
-const avenUIPreset = require("../../deps/aven_ui/assets/tailwind.config.js");
-
-module.exports = {
-  presets: [avenUIPreset],
-  content: ["./lib/**/*.{ex,heex}", "./assets/js/**/*.js"],
-};
-```
-
-### 7. Add flash toasts to root layout
+### 6. Render flash toasts in your root layout
 
 ```heex
 <%!-- lib/my_app_web/components/layouts/root.html.heex --%>
@@ -119,13 +167,14 @@ module.exports = {
 
 ## Project structure
 
-```
+```text
 aven_ui/
 ├── mix.exs
 ├── lib/
-│   ├── aven_ui.ex                        ← use AvenUI, :components macro
+│   ├── aven_ui.ex
 │   └── aven_ui/
-│       ├── helpers.ex                    ← shared classes/1 utility
+│       ├── data_table.ex
+│       ├── helpers.ex
 │       ├── components/
 │       │   ├── accordion.ex
 │       │   ├── alert.ex
@@ -134,6 +183,9 @@ aven_ui/
 │       │   ├── button.ex
 │       │   ├── card.ex
 │       │   ├── code_block.ex
+│       │   ├── combobox.ex
+│       │   ├── data_table.ex
+│       │   ├── date_picker.ex
 │       │   ├── dropdown.ex
 │       │   ├── empty_state.ex
 │       │   ├── input.ex
@@ -149,17 +201,61 @@ aven_ui/
 │       │   ├── toast.ex
 │       │   └── toggle.ex
 │       └── mix/tasks/
-│           └── add.ex                    ← mix aven_ui.add
+│           ├── add.ex
+│           ├── list.ex
+│           └── new.ex
 ├── assets/
-│   ├── css/avenui.css                    ← --avn- CSS design tokens
-│   ├── js/hooks/index.js                 ← AvenUIHooks
-│   └── tailwind.config.js
-└── storybook/                            ← live component docs (Phoenix app)
+│   ├── css/avenui.css
+│   └── js/hooks/index.js
+└── storybook/
 ```
 
 ---
 
-## Components
+## Component inventory
+
+### Forms
+
+- Input / Select
+- Combobox
+- Date Picker
+- Toggle
+
+### Actions and navigation
+
+- Button
+- Dropdown
+- Tabs
+- Accordion
+
+### Data and layout
+
+- Table
+- Data Table
+- Card
+- Stat
+
+### Feedback and overlays
+
+- Alert
+- Toast / Flash
+- Modal
+
+### Display and utility
+
+- Avatar
+- Badge
+- Code Block
+- Empty State
+- Kbd
+- Progress
+- Separator
+- Skeleton
+- Spinner
+
+---
+
+## Examples
 
 ### Button
 
@@ -167,36 +263,11 @@ aven_ui/
 <.button>Deploy</.button>
 <.button variant="secondary" size="sm">Cancel</.button>
 <.button variant="danger" phx-click="delete" phx-value-id={@id}>Delete</.button>
-<.button loading={@saving}>Saving…</.button>
+<.button loading={@saving}>Saving...</.button>
 ```
 
-**Variants:** `primary` `secondary` `ghost` `danger` `outline` `link`  
-**Sizes:** `xs` `sm` `md` `lg` `xl`
-
----
-
-### Badge
-
-```heex
-<.badge>Default</.badge>
-<.badge variant="success"><.badge_dot /> Online</.badge>
-<.badge variant="danger">Expired</.badge>
-```
-
-**Variants:** `default` `primary` `success` `warning` `danger` `info` `outline`
-
----
-
-### Alert
-
-```heex
-<.alert variant="success" title="Deployed!">Version 2.4.1 is live.</.alert>
-<.alert variant="warning" title="High memory" dismissible phx-click="dismiss">
-  Node #3 is at 87%.
-</.alert>
-```
-
----
+Variants: `primary` `secondary` `ghost` `danger` `outline` `link`  
+Sizes: `xs` `sm` `md` `lg` `xl`
 
 ### Input + Select
 
@@ -204,14 +275,80 @@ aven_ui/
 <.input field={@form[:email]} type="email" label="Email" hint="We'll never share this." />
 
 <.input field={@form[:amount]} label="Amount">
-  <:prefix>฿</:prefix>
+  <:prefix>$</:prefix>
 </.input>
 
-<.select field={@form[:region]} label="Region"
-  options={["Bangkok", "Singapore", "Tokyo"]} prompt="Choose…" />
+<.select
+  field={@form[:region]}
+  label="Region"
+  options={[{"Bangkok", "bangkok"}, {"Singapore", "singapore"}, {"Tokyo", "tokyo"}]}
+  prompt="Choose..."
+/>
 ```
 
----
+### Combobox
+
+```heex
+<.combobox
+  id="country"
+  field={@form[:country]}
+  label="Country"
+  placeholder="Search countries..."
+  options={[
+    %{value: "th", label: "Thailand"},
+    %{value: "sg", label: "Singapore"},
+    %{value: "jp", label: "Japan"}
+  ]}
+/>
+
+<.combobox
+  id="user"
+  name="user_id"
+  label="User"
+  placeholder="Search users..."
+  options={@users}
+  selected={@user_id}
+  on_search="search_users"
+/>
+```
+
+### Date Picker
+
+```heex
+<.date_picker
+  id="birthday"
+  name="birthday"
+  label="Birthday"
+  selected={@birthday}
+  view_month={@dp_month}
+  on_change="date_selected"
+/>
+
+<.date_picker
+  id="booking"
+  name="booking"
+  label="Stay dates"
+  mode="range"
+  range_start={@check_in}
+  range_end={@check_out}
+  view_month={@dp_month}
+  on_change="dates_selected"
+/>
+```
+
+```elixir
+def handle_event("date_selected", %{"date" => date}, socket) do
+  {:noreply, assign(socket, :birthday, Date.from_iso8601!(date))}
+end
+
+def handle_event("dp_prev_month_birthday", _, socket) do
+  {:noreply, update(socket, :dp_month, &Date.beginning_of_month(Date.add(&1, -1)))}
+end
+
+def handle_event("dp_next_month_birthday", _, socket) do
+  {:noreply, update(socket, :dp_month, &Date.beginning_of_month(Date.add(&1, 32)))}
+end
+```
 
 ### Card
 
@@ -230,14 +367,12 @@ aven_ui/
 </.card>
 ```
 
----
-
 ### Modal
 
 ```heex
 <.button phx-click="open_modal">Open</.button>
 
-<.modal :if={@show_modal} id="confirm-modal" on_close="close_modal">
+<.modal :if={@show_modal} id="confirm-modal">
   <:title>Delete project?</:title>
   <:description>This cannot be undone.</:description>
   <p>All data will be permanently deleted.</p>
@@ -248,14 +383,10 @@ aven_ui/
 </.modal>
 ```
 
-In LiveView:
-
 ```elixir
-def handle_event("open_modal",  _, socket), do: {:noreply, assign(socket, show_modal: true)}
+def handle_event("open_modal", _, socket), do: {:noreply, assign(socket, show_modal: true)}
 def handle_event("close_modal", _, socket), do: {:noreply, assign(socket, show_modal: false)}
 ```
-
----
 
 ### Dropdown
 
@@ -271,8 +402,6 @@ def handle_event("close_modal", _, socket), do: {:noreply, assign(socket, show_m
 </.dropdown>
 ```
 
----
-
 ### Tabs
 
 ```heex
@@ -284,9 +413,7 @@ def handle_event("close_modal", _, socket), do: {:noreply, assign(socket, show_m
 </.tabs>
 ```
 
-**Variants:** `underline` `pills` `boxed`
-
----
+Variants: `underline` `pills` `boxed`
 
 ### Table
 
@@ -308,23 +435,76 @@ def handle_event("close_modal", _, socket), do: {:noreply, assign(socket, show_m
 <.pagination page={@page} total_pages={@total_pages} phx-click="paginate" />
 ```
 
----
+### Data Table
+
+```heex
+<.data_table
+  id="users-table"
+  rows={@rows}
+  table={@table}
+  title="Users"
+  on_filter="dt_filter"
+  on_sort="dt_sort"
+  on_paginate="dt_paginate"
+>
+  <:filter>
+    <.dt_search name="search" placeholder="Search users..." />
+    <.dt_select
+      name="status"
+      prompt="All statuses"
+      options={[{"Active", "active"}, {"Inactive", "inactive"}]}
+    />
+  </:filter>
+
+  <:toolbar>
+    <.button size="sm" phx-click="new_user">New user</.button>
+  </:toolbar>
+
+  <:col :let={u} label="Name" field="name" sortable><%= u.name %></:col>
+  <:col :let={u} label="Email" field="email" sortable><%= u.email %></:col>
+  <:action :let={u}>
+    <.button size="xs" variant="ghost" phx-click="edit" phx-value-id={u.id}>Edit</.button>
+  </:action>
+</.data_table>
+```
+
+```elixir
+alias AvenUI.DataTable
+
+def mount(_, _, socket) do
+  {:ok, socket |> assign(:table, DataTable.new(per_page: 20)) |> load_rows()}
+end
+
+def handle_event("dt_filter", params, socket) do
+  table =
+    socket.assigns.table
+    |> DataTable.set_filter(params)
+    |> DataTable.reset_page()
+
+  {:noreply, socket |> assign(:table, table) |> load_rows()}
+end
+
+def handle_event("dt_sort", %{"field" => field}, socket) do
+  table = DataTable.toggle_sort(socket.assigns.table, field)
+  {:noreply, socket |> assign(:table, table) |> load_rows()}
+end
+
+def handle_event("dt_paginate", %{"page" => page}, socket) do
+  table = DataTable.set_page(socket.assigns.table, String.to_integer(page))
+  {:noreply, socket |> assign(:table, table) |> load_rows()}
+end
+```
 
 ### Toast / Flash
 
 ```heex
-<%!-- In root.html.heex — renders all @flash messages as toasts --%>
 <.flash_group flash={@flash} />
 ```
 
-From LiveView:
-
 ```elixir
-socket |> put_flash(:success, "Deployment complete!")
-socket |> put_flash(:error,   "Connection failed.")
+socket |> put_flash(:info, "Deployment complete!")
+socket |> put_flash(:error, "Connection failed.")
 ```
-
----
 
 ### Accordion
 
@@ -332,12 +512,10 @@ socket |> put_flash(:error,   "Connection failed.")
 <.accordion id="faq">
   <:item title="Is AvenUI free?">Yes. MIT licensed.</:item>
   <:item title="Does it support dark mode?" open>
-    Yes — via CSS variables, no Tailwind class flicker.
+    Yes — via CSS variables and Tailwind v4 theme tokens.
   </:item>
 </.accordion>
 ```
-
----
 
 ### Avatar
 
@@ -353,19 +531,15 @@ socket |> put_flash(:error,   "Connection failed.")
 </.avatar_group>
 ```
 
----
-
 ### Stat
 
 ```heex
 <div class="grid grid-cols-3 gap-4">
-  <.stat label="Deploys today" value="24"    change="+8"    trend="up" />
-  <.stat label="Avg response"  value="142"   suffix="ms"    change="+12ms" trend="down" />
-  <.stat label="Uptime (30d)"  value="99.97" suffix="%" />
+  <.stat label="Deploys today" value="24" change="+8" trend="up" />
+  <.stat label="Avg response" value="142" suffix="ms" change="+12ms" trend="down" />
+  <.stat label="Uptime (30d)" value="99.97" suffix="%" />
 </div>
 ```
-
----
 
 ### Utility components
 
@@ -383,22 +557,24 @@ socket |> put_flash(:error,   "Connection failed.")
 
 ## JS Hooks
 
-| Hook              | Purpose                           |
-| ----------------- | --------------------------------- |
-| `Dropdown`        | Keyboard nav, outside-click close |
-| `Modal`           | Focus trap, scroll lock, Escape   |
-| `Tooltip`         | Position-aware tooltip            |
-| `Flash`           | Auto-dismiss with pause-on-hover  |
-| `AutoResize`      | Growing textarea                  |
-| `CopyToClipboard` | Clipboard API with feedback       |
-| `InfiniteScroll`  | Load-more on sentinel visible     |
-| `ScrollTop`       | Smooth scroll on LiveView patch   |
+AvenUI exports 10 lightweight hooks:
+
+| Hook               | Purpose                                 |
+| ------------------ | --------------------------------------- |
+| `Flash`            | Auto-dismiss with pause on hover        |
+| `Dropdown`         | Keyboard nav, outside click close       |
+| `Modal`            | Focus trap, Escape close, scroll lock   |
+| `Tooltip`          | Position-aware tooltip                  |
+| `AutoResize`       | Growing textarea                        |
+| `CopyToClipboard`  | Clipboard API with feedback             |
+| `InfiniteScroll`   | Load-more on sentinel visible           |
+| `ScrollTop`        | Smooth scroll on LiveView patch         |
+| `AvenUICombobox`   | Open, search, select, keyboard nav      |
+| `AvenUIDatePicker` | Date-picker open/close and clear wiring |
 
 ```heex
-<%!-- Tooltip usage --%>
 <button phx-hook="Tooltip" id="info-btn" data-tooltip="More info">?</button>
 
-<%!-- Dropdown usage --%>
 <div phx-hook="Dropdown" id="my-menu">
   <button data-avn-dropdown-trigger>Open</button>
   <div data-avn-dropdown-menu hidden>
@@ -411,26 +587,25 @@ socket |> put_flash(:error,   "Connection failed.")
 
 ## Storybook
 
-Run the interactive component doc site locally:
+Run the interactive component docs locally:
 
 ```bash
 cd storybook
 mix deps.get
 mix phx.server
-# Open http://localhost:4000
 ```
+
+Then open `http://localhost:4000`.
 
 ---
 
 ## Roadmap
 
-- [ ] Command Palette / Combobox
-- [ ] Drawer / Slideout panel
-- [ ] Date Picker
-- [ ] Chart hooks (VegaLite + Chart.js)
-- [ ] Multi-select
-- [ ] File upload
-- [ ] Publish to Hex.pm
+- Command palette
+- Drawer / slideout panel
+- Chart hooks
+- Multi-select
+- File upload
 
 ---
 
