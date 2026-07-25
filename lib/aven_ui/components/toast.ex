@@ -91,14 +91,14 @@ defmodule AvenUI.Components.Toast do
       ])}
       {@rest}
     >
-      <%# Icon %>
+      <%!-- Icon --%>
       <div class="toast-icon shrink-0 mt-0.5">
         <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" d={icon(@variant)} />
         </svg>
       </div>
 
-      <%# Content %>
+      <%!-- Content --%>
       <div class="flex-1 min-w-0">
         <%= if @title do %>
           <p class="text-sm font-medium text-avn-foreground"><%= @title %></p>
@@ -110,7 +110,7 @@ defmodule AvenUI.Components.Toast do
         <% end %>
       </div>
 
-      <%# Dismiss %>
+      <%!-- Dismiss --%>
       <%= if @dismissible do %>
         <button
           type="button"
@@ -150,7 +150,7 @@ defmodule AvenUI.Components.Toast do
       ])}
       aria-label="Notifications"
     >
-      <%# Render each flash type %>
+      <%!-- Render each flash type --%>
       <.toast
         :if={msg = Phoenix.Flash.get(@flash, :info)}
         id="flash-info"

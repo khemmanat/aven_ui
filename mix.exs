@@ -1,21 +1,21 @@
 defmodule AvenUI.MixProject do
   use Mix.Project
 
-  @version "0.2.3"
+  @version "1.0.0"
   @source_url "https://github.com/khemmanat/aven_ui"
 
   def project do
     [
       app: :aven_ui,
       version: @version,
-      elixir: "~> 1.15",
+      elixir: "~> 1.19",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       package: package(),
       docs: docs(),
       name: "AvenUI",
       description:
-        "24 accessible Phoenix LiveView components. Requires Tailwind v4 + Phoenix 1.8. Dark mode, shadcn-style installer. Free forever, MIT licensed.",
+        "29+ accessible Phoenix LiveView components. Requires Tailwind v4 + Phoenix 1.8. Dark mode, shadcn-style installer. Free forever, MIT licensed.",
       source_url: @source_url
     ]
   end
@@ -29,7 +29,7 @@ defmodule AvenUI.MixProject do
       {:phoenix, "~> 1.8"},
       {:phoenix_live_view, "~> 1.1"},
       {:phoenix_html, "~> 4.3"},
-      {:ex_doc, "~> 0.40.1", only: :dev, runtime: false}
+      {:ex_doc, "~> 0.37", only: :dev, runtime: false}
     ]
   end
 

@@ -10,7 +10,7 @@ defmodule AvenUI.Components.DataTable do
 
   ## Basic example
 
-      <%# In the template %>
+      <%!-- In the template --%>
       <.data_table
         id="users-table"
         rows={@rows}
@@ -136,7 +136,7 @@ defmodule AvenUI.Components.DataTable do
     ~H"""
     <div class={classes(["w-full space-y-0 rounded-avn-xl border border-avn-border overflow-hidden", @class])}>
 
-      <%# ── Header ──────────────────────────────────────────────── %>
+      <%!-- ── Header ──────────────────────────────────────────────── --%>
       <div :if={@title || @filter != [] || @toolbar != []}
            class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 px-4 py-3 bg-avn-card border-b border-avn-border">
 
@@ -145,9 +145,9 @@ defmodule AvenUI.Components.DataTable do
           <p :if={@subtitle} class="text-xs text-avn-muted-foreground mt-0.5"><%= @subtitle %></p>
         </div>
 
-        <%# Filter bar + toolbar %>
+        <%!-- Filter bar + toolbar --%>
         <div class="flex flex-wrap items-center gap-2 sm:ml-auto">
-          <%# Filter controls — dt_search, dt_select, etc. %>
+          <%!-- Filter controls — dt_search, dt_select, etc. --%>
           <%= if @filter != [] do %>
             <form
               phx-change={@on_filter}
@@ -156,7 +156,7 @@ defmodule AvenUI.Components.DataTable do
             >
               <%= render_slot(@filter) %>
 
-              <%# Clear filters button — shown when any filter active %>
+              <%!-- Clear filters button — shown when any filter active --%>
               <button
                 :if={DataTable.filtered?(@table)}
                 type="button"
@@ -174,7 +174,7 @@ defmodule AvenUI.Components.DataTable do
             </form>
           <% end %>
 
-          <%# Toolbar slot — e.g. New button, Export %>
+          <%!-- Toolbar slot — e.g. New button, Export --%>
           <%= if @toolbar != [] do %>
             <div class="flex items-center gap-2">
               <%= render_slot(@toolbar) %>
@@ -183,7 +183,7 @@ defmodule AvenUI.Components.DataTable do
         </div>
       </div>
 
-      <%# ── Active filter chips ──────────────────────────────────── %>
+      <%!-- ── Active filter chips ──────────────────────────────────── --%>
       <div
         :if={DataTable.filtered?(@table)}
         class="flex flex-wrap gap-1.5 px-4 py-2 bg-avn-muted/40 border-b border-avn-border"
@@ -211,7 +211,7 @@ defmodule AvenUI.Components.DataTable do
         <% end %>
       </div>
 
-      <%# ── Table ───────────────────────────────────────────────── %>
+      <%!-- ── Table ───────────────────────────────────────────────── --%>
       <div class="w-full overflow-x-auto">
         <table class="w-full text-sm border-collapse">
           <thead>
@@ -295,16 +295,16 @@ defmodule AvenUI.Components.DataTable do
         </table>
       </div>
 
-      <%# ── Footer: count + pagination ─────────────────────────── %>
+      <%!-- ── Footer: count + pagination ─────────────────────────── --%>
       <div class="flex flex-col sm:flex-row items-center justify-between gap-3
                   px-4 py-3 border-t border-avn-border bg-avn-card">
 
-        <%# Row count %>
+        <%!-- Row count --%>
         <p class="text-xs text-avn-muted-foreground order-2 sm:order-1">
           <%= row_count_label(@table) %>
         </p>
 
-        <%# Pagination %>
+        <%!-- Pagination --%>
         <div class="flex items-center gap-1 order-1 sm:order-2">
           <button
             type="button"

@@ -58,7 +58,7 @@ defmodule AvenUI.Components.Alert do
       role="alert"
       class={classes(["relative flex gap-3 rounded-elx border p-4 text-sm", variant_class(@variant), @class])}
     >
-      <%# Icon: prefer slot, fall back to default SVG %>
+      <%!-- Icon: prefer slot, fall back to default SVG --%>
       <div class="alert-icon mt-0.5 shrink-0">
         <%= if @icon != [] do %>
           <%= render_slot(@icon) %>
@@ -71,7 +71,7 @@ defmodule AvenUI.Components.Alert do
       </div>
 
       <div class="flex-1 min-w-0">
-        <%# Title: prefer named slot, then attr %>
+        <%!-- Title: prefer named slot, then attr --%>
         <%= if @title_slot != [] do %>
           <p class="font-medium leading-snug mb-0.5"><%= render_slot(@title_slot) %></p>
         <% else %>

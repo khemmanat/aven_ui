@@ -7,7 +7,7 @@ defmodule AvenUI.Components.Dropdown do
 
   ## Examples
 
-      <%# Basic action menu %>
+      <%!-- Basic action menu --%>
       <.dropdown id="actions-menu">
         <:trigger>
           <.button variant="secondary" size="sm">
@@ -22,7 +22,7 @@ defmodule AvenUI.Components.Dropdown do
         <.dropdown_item variant="danger" phx-click="delete">Delete</.dropdown_item>
       </.dropdown>
 
-      <%# With icons and labels %>
+      <%!-- With icons and labels --%>
       <.dropdown id="user-menu" align="right">
         <:trigger>
           <.avatar initials="KN" size="sm" class="cursor-pointer" />
@@ -39,7 +39,7 @@ defmodule AvenUI.Components.Dropdown do
         <.dropdown_item phx-click="logout">Sign out</.dropdown_item>
       </.dropdown>
 
-      <%# Grouped with labels %>
+      <%!-- Grouped with labels --%>
       <.dropdown id="view-menu">
         <:trigger><.button variant="ghost" size="sm">View</.button></:trigger>
 
@@ -72,12 +72,12 @@ defmodule AvenUI.Components.Dropdown do
       phx-hook="Dropdown"
       class={classes(["relative inline-block", @class])}
     >
-      <%# Trigger wrapper — hook binds click/keydown here %>
+      <%!-- Trigger wrapper — hook binds click/keydown here --%>
       <div data-avn-dropdown-trigger aria-haspopup="true" aria-expanded="false" aria-controls={"#{@id}-menu"}>
         <%= render_slot(@trigger) %>
       </div>
 
-      <%# Menu panel %>
+      <%!-- Menu panel --%>
       <div
         id={"#{@id}-menu"}
         data-avn-dropdown-menu

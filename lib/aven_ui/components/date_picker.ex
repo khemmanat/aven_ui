@@ -101,16 +101,16 @@ defmodule AvenUI.Components.DatePicker do
 
     ~H"""
     <div class={classes(["relative w-full", @class])}>
-      <%# Label %>
+      <%!-- Label --%>
       <label :if={@label} for={"#{@id}-trigger"} class="block text-sm font-medium text-avn-foreground mb-1.5">
         <%= @label %>
         <span :if={@required} class="text-red-500 ml-0.5">*</span>
       </label>
 
-      <%# Root — hook manages open/close %>
+      <%!-- Root — hook manages open/close --%>
       <div id={@id} phx-hook="AvenUIDatePicker" class="relative">
 
-        <%# Hidden inputs — submitted with form %>
+        <%!-- Hidden inputs — submitted with form --%>
         <%= if @mode == "range" do %>
           <input type="hidden" id={"#{@id}-start-val"} name={"#{@name}[start]"} value={format_date(@range_start)} />
           <input type="hidden" id={"#{@id}-end-val"}   name={"#{@name}[end]"}   value={format_date(@range_end)} />
@@ -118,7 +118,7 @@ defmodule AvenUI.Components.DatePicker do
           <input type="hidden" id={"#{@id}-val"} name={@name} value={format_date(@selected)} />
         <% end %>
 
-        <%# Trigger button %>
+        <%!-- Trigger button --%>
         <button
           type="button"
           id={"#{@id}-trigger"}
@@ -135,7 +135,7 @@ defmodule AvenUI.Components.DatePicker do
             if(@error, do: "border-red-500", else: "")
           ])}
         >
-          <%# Calendar icon %>
+          <%!-- Calendar icon --%>
           <svg class="w-4 h-4 text-avn-muted-foreground shrink-0" viewBox="0 0 24 24"
                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
             <rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>
@@ -149,7 +149,7 @@ defmodule AvenUI.Components.DatePicker do
           ])}>
             <%= display_label(@mode, @selected, @range_start, @range_end, @placeholder) %>
           </span>
-          <%# Clear button — shown when value set %>
+          <%!-- Clear button — shown when value set --%>
           <button
             :if={has_value?(@mode, @selected, @range_start)}
             type="button"
@@ -163,7 +163,7 @@ defmodule AvenUI.Components.DatePicker do
           </button>
         </button>
 
-        <%# Calendar panel %>
+        <%!-- Calendar panel --%>
         <div
           id={"#{@id}-panel"}
           role="dialog"
@@ -171,7 +171,7 @@ defmodule AvenUI.Components.DatePicker do
           aria-modal="true"
           class="hidden absolute z-50 mt-1 rounded-avn-xl border border-avn-border bg-avn-background shadow-avn-md p-3 w-[280px]"
         >
-          <%# Month navigation header %>
+          <%!-- Month navigation header --%>
           <div class="flex items-center justify-between mb-3">
             <button
               type="button"
@@ -202,7 +202,7 @@ defmodule AvenUI.Components.DatePicker do
             </button>
           </div>
 
-          <%# Day labels %>
+          <%!-- Day labels --%>
           <div class="grid grid-cols-7 mb-1">
             <span :for={day <- ~w(Su Mo Tu We Th Fr Sa)}
                   class="text-[10px] font-medium text-avn-muted-foreground text-center py-1">
@@ -210,7 +210,7 @@ defmodule AvenUI.Components.DatePicker do
             </span>
           </div>
 
-          <%# Calendar grid %>
+          <%!-- Calendar grid --%>
           <div class="grid grid-cols-7 gap-y-0.5" role="grid" aria-label={Calendar.strftime(@month, "%B %Y")}>
             <%= for week <- @weeks do %>
               <%= for day <- week do %>
@@ -234,7 +234,7 @@ defmodule AvenUI.Components.DatePicker do
             <% end %>
           </div>
 
-          <%# Footer — range mode shows selected range summary %>
+          <%!-- Footer — range mode shows selected range summary --%>
           <div :if={@mode == "range" && (@range_start || @range_end)}
                class="mt-3 pt-3 border-t border-avn-border text-xs text-avn-muted-foreground flex justify-between">
             <span>
@@ -246,7 +246,7 @@ defmodule AvenUI.Components.DatePicker do
             </span>
           </div>
 
-          <%# Today button %>
+          <%!-- Today button --%>
           <div class="mt-2 flex justify-center">
             <button
               type="button"
@@ -261,12 +261,12 @@ defmodule AvenUI.Components.DatePicker do
         </div>
       </div>
 
-      <%# Hint %>
+      <%!-- Hint --%>
       <p :if={@hint && !@error} class="mt-1 text-xs text-avn-muted-foreground">
         <%= @hint %>
       </p>
 
-      <%# Error %>
+      <%!-- Error --%>
       <p :if={@error} class="mt-1 text-xs text-red-500 flex items-center gap-1">
         <svg class="w-3 h-3 shrink-0" viewBox="0 0 24 24" fill="currentColor">
           <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>

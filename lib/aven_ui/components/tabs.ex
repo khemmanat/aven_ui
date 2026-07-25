@@ -74,7 +74,7 @@ defmodule AvenUI.Components.Tabs do
   def tabs(assigns) do
     ~H"""
     <div class={classes(["w-full", @class])}>
-      <%# Tab bar %>
+      <%!-- Tab bar  --%>
       <div
         role="tablist"
         class={tablist_class(@variant)}
@@ -103,7 +103,7 @@ defmodule AvenUI.Components.Tabs do
         <% end %>
       </div>
 
-      <%# Panels %>
+      <%!-- Panels  --%>
       <%= if @panel != [] do %>
         <%= for panel <- @panel do %>
           <div

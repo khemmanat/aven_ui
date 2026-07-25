@@ -71,7 +71,7 @@ defmodule AvenUI.Components.Modal do
   """
   def modal(assigns) do
     ~H"""
-    <%# Backdrop + scroll lock via phx-mounted / JS hook %>
+    <%!-- Backdrop + scroll lock via phx-mounted / JS hook --%>
     <div
       id={@id}
       phx-hook="Modal"
@@ -81,14 +81,14 @@ defmodule AvenUI.Components.Modal do
       aria-modal="true"
       aria-labelledby={"#{@id}-title"}
     >
-      <%# Backdrop %>
+      <%!-- Backdrop --%>
       <div
         class="absolute inset-0 bg-black/50 backdrop-blur-[2px] animate-fade-in"
         phx-click={@on_close}
         aria-hidden="true"
       />
 
-      <%# Panel %>
+      <%!-- Panel --%>
       <div class={classes([
         "relative z-10 w-full bg-avn-card border border-avn-border",
         "rounded-avn-xl shadow-avn-md",
@@ -98,7 +98,7 @@ defmodule AvenUI.Components.Modal do
         @class
       ])}>
 
-        <%# Header %>
+        <%!-- Header --%>
         <%= if @title != [] or @description != [] do %>
           <div class="flex items-start justify-between gap-4 px-6 py-5 border-b border-avn-border shrink-0">
             <div>
@@ -116,7 +116,7 @@ defmodule AvenUI.Components.Modal do
                 </p>
               <% end %>
             </div>
-            <%# Close button %>
+            <%!-- Close button --%>
             <button
               type="button"
               phx-click={@on_close}
@@ -130,12 +130,12 @@ defmodule AvenUI.Components.Modal do
           </div>
         <% end %>
 
-        <%# Body — scrollable %>
+        <%!-- Body — scrollable --%>
         <div class="flex-1 overflow-y-auto px-6 py-5 min-h-0">
           <%= render_slot(@inner_block) %>
         </div>
 
-        <%# Footer %>
+        <%!-- Footer --%>
         <%= if @footer != [] do %>
           <div class="flex items-center justify-end gap-2 px-6 py-4 border-t border-avn-border bg-avn-muted/40 rounded-b-avn-xl shrink-0">
             <%= render_slot(@footer) %>

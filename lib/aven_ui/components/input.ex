@@ -13,24 +13,24 @@ defmodule AvenUI.Components.Input do
 
   ## Examples
 
-      <%# Basic usage with a changeset form %>
+      <%!-- Basic usage with a changeset form --%>
       <.input field={@form[:email]} type="email" label="Email address" />
 
-      <%# With hint text %>
+      <%!-- With hint text --%>
       <.input field={@form[:username]} label="Username" hint="Letters and numbers only" />
 
-      <%# Password with show/hide toggle (uses the Toggle hook) %>
+      <%!-- Password with show/hide toggle (uses the Toggle hook) --%>
       <.input field={@form[:password]} type="password" label="Password" />
 
-      <%# Search input %>
+      <%!-- Search input --%>
       <.input type="search" name="q" value={@query} placeholder="Search…" phx-change="search" phx-debounce="200" />
 
-      <%# With prefix icon %>
+      <%!-- With prefix icon --%>
       <.input field={@form[:amount]} type="number" label="Amount">
         <:prefix>฿</:prefix>
       </.input>
 
-      <%# Standalone (no form) %>
+      <%!-- Standalone (no form) --%>
       <.input type="text" name="tag" id="tag-input" value="" placeholder="Add tag…" />
   """
 
@@ -214,7 +214,7 @@ defmodule AvenUI.Components.Input do
           <% end %>
           <%= Phoenix.HTML.Form.options_for_select(@options, @value) %>
         </select>
-        <%# Chevron icon %>
+        <%!-- Chevron icon --%>
         <div class="pointer-events-none absolute inset-y-0 right-2 flex items-center">
           <svg class="h-4 w-4 text-avn-muted-foreground" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>

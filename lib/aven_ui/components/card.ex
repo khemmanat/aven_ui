@@ -4,7 +4,7 @@ defmodule AvenUI.Components.Card do
 
   ## Examples
 
-      <%# Simple card with all slots %>
+      <%!-- Simple card with all slots --%>
       <.card>
         <:header>
           <.card_title>Server #3</.card_title>
@@ -18,12 +18,12 @@ defmodule AvenUI.Components.Card do
         </:footer>
       </.card>
 
-      <%# Flat variant (no shadow, minimal border) %>
+      <%!-- Flat variant (no shadow, minimal border) --%>
       <.card variant="flat" class="p-6">
         Content here
       </.card>
 
-      <%# With hover effect for clickable cards %>
+      <%!-- With hover effect for clickable cards --%>
       <.card variant="interactive" phx-click="select" phx-value-id={@item.id}>
         Clickable card
       </.card>
@@ -68,7 +68,7 @@ defmodule AvenUI.Components.Card do
         </div>
       <% end %>
 
-      <%# Fallback: inner_block without named slots %>
+      <%!-- Fallback: inner_block without named slots --%>
       <%= if @inner_block != [] and @body == [] do %>
         <div class={card_padding(@padding)}>
           <%= render_slot(@inner_block) %>
